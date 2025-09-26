@@ -25,16 +25,18 @@ export function EarlyShipmentChart({ data }: EarlyShipmentChartProps) {
       <div className="section-header">
         <div>
           <h3>提前发货分布</h3>
-          <p className="muted">识别提前发货集中 SKU，规划补货与缓冲策略。</p>
+          <p className="muted">识别提前发货集中的 SKU，规划补货与缓冲策略。</p>
         </div>
       </div>
       <ResponsiveContainer width="100%" height={280}>
-        <BarChart data={chartData} layout="vertical" margin={{ top: 10, right: 20, left: 0, bottom: 10 }}>
+        <BarChart data={chartData} layout="vertical" margin={{ top: 10, right: 20, left: 12, bottom: 10 }}>
           <CartesianGrid strokeDasharray="3 3" stroke="rgba(148, 163, 184, 0.1)" />
           <XAxis type="number" tick={{ fill: '#94a3b8', fontSize: 12 }} axisLine={false} tickLine={false} />
           <YAxis
             dataKey="sku"
             type="category"
+            width={160}
+            interval={0}
             tick={{ fill: '#cbd5f5', fontSize: 12 }}
             axisLine={false}
             tickLine={false}
@@ -47,8 +49,8 @@ export function EarlyShipmentChart({ data }: EarlyShipmentChartProps) {
               return (
                 <div className="tooltip-card">
                   <strong>{item.sku}</strong>
-                  <p>提前发货：{(item.earlyShipment / 10000).toFixed(2)} 万箱</p>
-                  <p>占比：{item.formattedShare}%</p>
+                  <p>提前发货 {(item.earlyShipment / 10000).toFixed(2)} 万箱</p>
+                  <p>占比 {item.formattedShare}%</p>
                 </div>
               );
             }}
@@ -59,4 +61,3 @@ export function EarlyShipmentChart({ data }: EarlyShipmentChartProps) {
     </article>
   );
 }
-
